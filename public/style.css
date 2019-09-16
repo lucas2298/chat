@@ -45,12 +45,13 @@ label {
     padding: 10px 20px;
 }
 
-input {
+#message {
     padding: 10px 20px;
     box-sizing: border-box;
     background: #eee;
     border: 0;
     display: block;
+    height: 50px;
     width: 100%;
     background: #fff;
     border-bottom: 1px solid #eee;
@@ -58,12 +59,13 @@ input {
     font-size: 16px;
 }
 
-button {
+#send {
     background: #575ed8;
     color: #fff;
     font-size: 18px;
     border: 0;
-    padding: 12px 0;
+    padding: 5px;
+    height: 40px;
     width: 100%;
     border-radius: 0 0 2px 2px;
 }

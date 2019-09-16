@@ -1,10 +1,10 @@
 // Make connection
 
 // Localhost
-// let socket = io.connect('http://localhost:4000');
+let socket = io.connect('http://localhost:4000');
 
 // Live server
-let socket = io.connect('https://thanght.herokuapp.com');
+// let socket = io.connect('https://thanght.herokuapp.com');
 
 let message = document.getElementById('message'),
     handle = document.getElementById('handle'),
@@ -13,14 +13,25 @@ let message = document.getElementById('message'),
 
 // Emit events
 btn.addEventListener('click', function(){
+    if (message.value.trim().length == 0) {
+        message.value = "";
+        return;
+    }
     socket.emit('chat', {
         message: message.value,
-        handle: handle.value
     });
     message.value = "";
 });
 
 // Listen for events
 socket.on('chat', function(data){
-    output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
+    output.innerHTML += '<p>' + data.message + '</p>';
+});
+
+$(function(){
+    $('#message').on('keypress', function (event) { 
+        if (event.which == 13 && $(this).val() != "") {
+            console.log('ok');
+        }
+    });
 });
