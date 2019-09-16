@@ -13,7 +13,6 @@ app.use(express.static('public'));
 let io = socket(server);
 
 io.on('connection', function(socket) {
-    console.log(socket.id);
     socket.on('chat', function(data){
         io.sockets.emit('chat', data);
     });
