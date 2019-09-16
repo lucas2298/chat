@@ -1,1 +1,1 @@
-web: node hihi.html
+web: node index.js
