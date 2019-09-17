@@ -15,23 +15,15 @@ app.use(express.static('public'));
 
 // async function
 // Get answer from server
-async function getResponse(data) {
+async function getResponse(req, res) {
     let options = {
         method: 'POST',
         uri: 'http://localhost:4001/postdata',
-        body: data,
+        body: req,
         json: true
     };
-
-    let returndata;
-    let sendrequest = await request(options)
-    .then(function (parserdBody){
-        console.log(parserdBody)
-        return parserdBody;
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+    let returndata = await request(options)
+    return returndata;
 }
 
 // Socket setup
@@ -39,20 +31,16 @@ let io = socket(server);
 
 io.on('connection', function(socket) {
     socket.on('chat', function(data){
-        let mess;
+        io.to(socket.id).emit('chat', data);
         // Testing
-        getResponse('ahihi')
-        .then (function (parserdBody) {
-            console.log(parserdBody)
-            mess = parserdBody;
+        getResponse(data.message)
+        .then (function (parserdBody) {            
+            io.to(socket.id).emit('chat', {
+                message: parserdBody,
+                isUser: false
+            });
         });
         //
-
-        io.to(socket.id).emit('chat', data);
-        io.to(socket.id).emit('chat', {
-            message: mess,
-            isUser: false
-        });
     });
 });
 
