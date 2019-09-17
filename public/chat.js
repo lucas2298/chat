@@ -19,19 +19,47 @@ btn.addEventListener('click', function(){
     }
     socket.emit('chat', {
         message: message.value,
+        isUser: true
     });
     message.value = "";
 });
 
+// Function
+
+function chat_scrolldown() {
+    $('#chat_log').animate({ scrollTop: $('#chat_log')[0].scrollHeight }, 500);
+}
+
+function chat_add_html(html) {
+    $('#chat_log').append(html);
+    chat_scrolldown();
+}
+
 // Listen for events
 socket.on('chat', function(data){
-    output.innerHTML += '<p>' + data.message + '</p>';
+    let message = data.message,
+        class_suffix = data.isUser ? '_user' : "";
+    let html = '\
+    <div class="chat_line">\
+        <div class="chat_bubble'+class_suffix+'">\
+            <div class="chat_triangle'+class_suffix+'"></div>\
+            '+message+'\
+        </div>\
+    </div>\
+    ';
+    chat_add_html(html);
 });
 
+
+// Jquery
 $(function(){
     $('#message').on('keypress', function (event) { 
         if (event.which == 13 && $(this).val() != "") {
-            console.log('ok');
+            socket.emit('chat', {
+                message: $(this).val(),
+                isUser: true
+            });
+            $(this).val("");
         }
     });
 });

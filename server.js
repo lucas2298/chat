@@ -14,6 +14,10 @@ let io = socket(server);
 
 io.on('connection', function(socket) {
     socket.on('chat', function(data){
-        io.sockets.emit('chat', data);
+        io.to(socket.id).emit('chat', data);
+        io.to(socket.id).emit('chat', {
+            message: data.message,
+            isUser: false
+        });
     });
 });
