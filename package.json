@@ -2,7 +2,7 @@
     "name": "chat",
     "version": "1.0.0",
     "description": "https://www.youtube.com/watch?v=KNqVpESuyQo\r https://www.youtube.com/watch?v=UzNqdD8EiAo&list=PL8ClR1xrtR4sCTLCFFFc3PKLHr6hPnXea&index=5\r https://cdnjs.com/libraries/socket.io",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -17,7 +17,10 @@
     },
     "homepage": "https://github.com/lucas2298/chat#readme",
     "dependencies": {
+        "body-parser": "^1.19.0",
         "express": "^4.17.1",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.4",
         "socket.io": "^2.2.0"
     },
     "devDependencies": {

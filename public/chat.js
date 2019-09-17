@@ -1,10 +1,10 @@
 // Make connection
 
 // Localhost
-// let socket = io.connect('http://localhost:4000');
+let socket = io.connect('http://localhost:4000');
 
 // Live server
-let socket = io.connect('https://thanght.herokuapp.com');
+// let socket = io.connect('https://thanght.herokuapp.com');
 
 let message = document.getElementById('message'),
     handle = document.getElementById('handle'),
