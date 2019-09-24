@@ -21,6 +21,8 @@ def main(argv):
             argument = arg
     # print output
     # print("ok")
-    print(response(argument))
+    messRes = response(argument)
+    print(messRes)
+    
 if __name__ == "__main__":
     main(sys.argv[1:])
