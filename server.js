@@ -1,12 +1,13 @@
 let express = require('express');
 let socket = require('socket.io');
-let bodyParser = require('body-parser');
-let request = require('request-promise');
+// let bodyParser = require('body-parser');
+// let request = require('request-promise');
+let spawn = require('child_process').spawn;
 
 // App setup
 let app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: false}));
 let server = app.listen(process.env.PORT || 4000, function() {
 });
 
@@ -15,7 +16,11 @@ app.use(express.static('public'));
 
 // async function
 // Get answer from server
-async function getResponse(req, res) {
+
+// Socket setup
+let io = socket(server);
+
+/*async function getResponse(req, res) {
     let options = {
         method: 'POST',
         // local
@@ -27,45 +32,34 @@ async function getResponse(req, res) {
     };
     let returndata = await request(options)
     return returndata;
-}
-
-// Socket setup
-let io = socket(server);
+}*/
 
 io.on('connection', function(socket) {
     socket.on('chat', function(data){
         io.to(socket.id).emit('chat', data);
-        // Testing
-        getResponse(data.message)
-        .then (function (parserdBody) {            
+        // Get answer from python
+        // getResponse(data.message)
+        // .then (function (parserdBody) {            
+        //     io.to(socket.id).emit('chat', {
+        //         message: parserdBody,
+        //         isUser: false
+        //     });
+        // });
+
+        // Using child_process
+        let process = spawn('py', ["-u", "./main.py", "--foo", data.message]);
+        // let process = spawn('py', ["-u", "./test.py", "--foo", data.message]);
+        process.stdout.on('data', (data) => {
             io.to(socket.id).emit('chat', {
-                message: parserdBody,
+                message: `${data}`,
                 isUser: false
             });
         });
-        //
+        process.stderr.on('data', (data) => {
+            // console.log(`error:${data}`);
+        });
+        process.stderr.on('close', () => {
+            // console.log("Closed");
+        });
     });
-});
-
-// Test python server
-
-app.get('/testing', async function(req, res) {
-    let data = {
-        data1: "ahihi"
-    };
-    let options = {
-        method: 'POST',
-        uri: 'http://localhost:4001/postdata',
-        body: data,
-        json: true
-    };
-    let returndata;
-    let sendrequest = await request(options)
-    .then(function (parserdBody){
-        returndata = parserdBody;
-    })
-    .catch(function(err){
-        console.log(err);
-    });
-    res.send(returndata);
 });
