@@ -18,7 +18,10 @@ app.use(express.static('public'));
 async function getResponse(req, res) {
     let options = {
         method: 'POST',
+        // local
         uri: 'http://localhost:4001/postdata',
+        // live
+        // uri: 
         body: req,
         json: true
     };
