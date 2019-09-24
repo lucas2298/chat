@@ -21,6 +21,10 @@ def main(argv):
             argument = arg
     # print output
     # print("ok")
-    print(response(argument))
+    # print(response(argument))
+
+import warnings
+warnings.simplefilter("ignore")
+
 if __name__ == "__main__":
     main(sys.argv[1:])
