@@ -4,7 +4,7 @@
          "responses": [
             "Chào mừng bạn tới công ty Aureole IT. Mình có thể giúp gì cho bạn?"
          ],
-         "selectList": ["Tìm hiểu về công ty", "Tuyển dụng"],
+         "selectList": ["Thông tin công ty", "Thông tin tuyển dụng", "Trở thành khách hàng"],
          "context_set": ""
         },
         {"tag": "hours",

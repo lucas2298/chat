@@ -60,5 +60,6 @@ def response(sentence, userID='123', show_details=False):
             for i in intents['intents']:
                 # find a tag matching the first result
                 if i['tag'] == results[0][0]:
+                    return i['selectList']
                     # a random response from the intent
-                    return random.choice(i['responses'])
+                    # return random.choice(i['responses'])
