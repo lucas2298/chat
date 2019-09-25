@@ -50,11 +50,12 @@ io.on('connection', function(socket) {
         let process = spawn('py', ["-u", "./main.py", "--foo", data.message]);
         process.stdout.on('data', (data) => {
             mess = `${data}`;
-            console.log(mess)
+            // console.log(mess)
             // Decode string base64
-            // mess = decodeBase64(mess);
+            messRes = decodeBase64(mess);
+            console.log(mess)
             io.to(socket.id).emit('chat', {
-                message: mess,
+                message: messRes,
                 isUser: false
             });
         });

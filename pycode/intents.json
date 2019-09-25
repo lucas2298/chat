@@ -2,9 +2,9 @@
         {"tag": "greeting",
          "patterns": ["Hi", "hello", "chao", "chao bạn", "bot", "can giup do"],
          "responses": [
-            "Chào mừng bạn tới công ty Aureole IT. Mình có thể giúp gì cho bạn?"
+            "Mình có thể giúp gì cho bạn?"
          ],
-         "selectList": ["Thông tin công ty", "Thông tin tuyển dụng", "Trở thành khách hàng"],
+         "selectList": ["Thông tin công ty.", "Thông tin tuyển dụng.", "Trở thành khách hàng."],
          "context_set": ""
         },
         {"tag": "hours",

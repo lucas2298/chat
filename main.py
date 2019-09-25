@@ -22,10 +22,18 @@ def main(argv):
             argument = arg
     # print output
     messRes = response(argument)
-    # encodedBytes = base64.b64encode(messRes.encode("utf-8"))
-    # encodedStr = str(encodedBytes, "utf-8")
-    # print(encodedStr)
-    print(messRes)
+    messSum = ""
+    messResEncode = ""
+    for mess in messRes:
+        messSum = messSum + '\n' + mess
+    # for mess in messRes:
+    #     encodedBytes = base64.b64encode(mess.encode("utf-8"))
+    #     encodedStr = str(encodedBytes, "utf-8")
+    # print(messResEncode)
+
+    encodedBytes = base64.b64encode(messSum.encode("utf-8"))
+    encodedStr = str(encodedBytes, "utf-8")
+    print(encodedStr)
     
 if __name__ == "__main__":
     main(sys.argv[1:])

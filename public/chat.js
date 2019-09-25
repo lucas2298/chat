@@ -39,6 +39,7 @@ function chat_add_html(html) {
 socket.on('chat', function(data){
     let message = data.message,
         class_suffix = data.isUser ? '_user' : "";
+
     let html = '\
     <div class="chat_line">\
         <div class="chat_bubble'+class_suffix+'">\
