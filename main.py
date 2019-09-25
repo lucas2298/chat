@@ -4,6 +4,7 @@
 #Import library
 from pycode.running import response
 import sys, getopt
+import base64
 def main(argv):
     argument = ''
     usage = 'usage: myscript.py -f <sometext>'
@@ -20,9 +21,10 @@ def main(argv):
         elif opt in ("-f", "--foo"):
             argument = arg
     # print output
-    # print("ok")
     messRes = response(argument)
-    print(messRes)
+    encodedBytes = base64.b64encode(messRes.encode("utf-8"))
+    encodedStr = str(encodedBytes, "utf-8")
+    print(encodedStr)
     
 if __name__ == "__main__":
     main(sys.argv[1:])

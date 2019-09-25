@@ -47,6 +47,7 @@ def classify(sentence):
     return_list = []
     for r in results:
         return_list.append((classes[r[0]], r[1]))
+        break
     # return tuple of intent and probability
     return return_list
 
