@@ -52,12 +52,34 @@ io.on('connection', function(socket) {
             mess = `${data}`;
             // console.log(mess)
             // Decode string base64
-            messRes = decodeBase64(mess);
-            console.log(mess)
-            io.to(socket.id).emit('chat', {
-                message: messRes,
-                isUser: false
-            });
+            let messDecode = decodeBase64(mess);
+            let messAnsw = "";
+            let user = false;
+            let selectID = 0;
+            for (let i = 1; i < messDecode.length; i++) {
+                if (messDecode[i] != "\n") messAnsw += messDecode[i];
+                else {
+                    if (!user) {
+                        user = true;
+                        io.to(socket.id).emit('chat', {
+                            message: messAnsw,
+                            isUser: false,
+                            isSelectList: false,
+                            id: 0
+                        });
+                    }
+                    else {
+                        selectID++;
+                        io.to(socket.id).emit('chat', {
+                            message: messAnsw,
+                            isUser: true,
+                            isSelectList: true,
+                            id: selectID
+                        });
+                    }
+                    messAnsw = ""
+                }
+            }
         });
         process.stderr.on('data', (data) => {
             // console.log(`error:${data}`);

@@ -19,7 +19,9 @@ btn.addEventListener('click', function(){
     }
     socket.emit('chat', {
         message: message.value,
-        isUser: true
+        isUser: true,
+        isSelectList: false,
+        id: 0
     });
     message.value = "";
 });
@@ -39,16 +41,28 @@ function chat_add_html(html) {
 socket.on('chat', function(data){
     let message = data.message,
         class_suffix = data.isUser ? '_user' : "";
-
-    let html = '\
-    <div class="chat_line">\
-        <div class="chat_bubble'+class_suffix+'">\
-            <div class="chat_triangle'+class_suffix+'"></div>\
-            '+message+'\
+    if (data.isSelectList) {
+        class_suffix = '_selectList';
+        let html = '\
+            <div class="chat_line">\
+                <div>\
+                    <button class="chat_bubble'+class_suffix+'" id='+class_suffix+data.id+'>'+message+'</button>\
+                </div>\
+            </div>\
+        ';
+        chat_add_html(html)
+    }
+    else {
+        let html = '\
+        <div class="chat_line">\
+            <div class="chat_bubble'+class_suffix+'">\
+                <div class="chat_triangle'+class_suffix+'"></div>\
+                '+message+'\
+            </div>\
         </div>\
-    </div>\
-    ';
-    chat_add_html(html);
+        ';
+        chat_add_html(html);
+    }
 });
 
 
@@ -58,7 +72,9 @@ $(function(){
         if (event.which == 13 && $(this).val() != "") {
             socket.emit('chat', {
                 message: $(this).val(),
-                isUser: true
+                isUser: true,
+                isSelectList: false,
+                id: 0
             });
             $(this).val("");
         }
