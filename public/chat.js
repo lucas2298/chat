@@ -17,6 +17,7 @@ btn.addEventListener('click', function(){
         message.value = "";
         return;
     }
+    $("#chat_select").empty();
     socket.emit('chat', {
         message: message.value,
         isUser: true,
@@ -42,7 +43,7 @@ socket.on('chat', function(data){
     let message = data.message,
         class_suffix = data.isUser ? '_user' : "";
     if (data.isSelectList) {
-        class_suffix = '_selectList';
+        class_suffix = '_select_list';
         let html = '\
             <div class="chat_select">\
                 <div>\
@@ -69,15 +70,12 @@ socket.on('chat', function(data){
 // Function select an answer
 function answerSelect(btnValue) {
     $("#chat_select").empty();
-    let html = '\
-        <div class="chat_line">\
-        <div class="chat_bubble_user">\
-            <div class="chat_triangle_user"></div>\
-            '+btnValue+'\
-        </div>\
-    </div>\
-    ';
-    chat_add_html(html);
+    socket.emit('chat', {
+        message: btnValue,
+        isUser: true,
+        isSelectList: false,
+        id: 0
+    });
 }
 
 
@@ -85,6 +83,7 @@ function answerSelect(btnValue) {
 $(function(){
     $('#message').on('keypress', function (event) { 
         if (event.which == 13 && $(this).val() != "") {
+            $("#chat_select").empty();
             socket.emit('chat', {
                 message: $(this).val(),
                 isUser: true,

@@ -21,17 +21,16 @@ with open('intents.json', encoding='utf-8') as json_data:
 words = [] #All word in every sentence
 classes = []
 documents = []
-stop_words = []
+stop_words = ['?', '.', ',']
 
 for intent in intents['intents']:
 	for pattern in intent['patterns']:
 		w = nltk.word_tokenize(pattern)
 		words.extend(w)
 		documents.append((w, intent['tag']))
-		if intent['tag'] not in classes:
-			classes.append(intent['tag'])
+	classes.append(intent['tag'])
 #Stem and lower word
-words = [stemmer.stem(w.lower()) for w in words if w not in stop_words]
+# words = [stemmer.stem(w.lower()) for w in words if w not in stop_words]
 #Remove duplicates words
 words = sorted(list(set(words)))
 #remove duplicates classes
@@ -50,7 +49,7 @@ for doc in documents:
 	#List of tokenized words for the pattern
 	pattern_words = doc[0]
 	#Stem each word
-	pattern_words = [stemmer.stem(w.lower()) for w in pattern_words]
+	# pattern_words = [stemmer.stem(w.lower()) for w in pattern_words]
 	#Create bag of words array
 	for w in words:
 		bag.append(1) if w in pattern_words else bag.append(0)
@@ -74,7 +73,7 @@ net = tflearn.input_data(shape=[None, len(train_x[0])])
 net = tflearn.fully_connected(net, 8)
 net = tflearn.fully_connected(net, 8)
 net = tflearn.fully_connected(net, len(train_y[0]), activation='softmax')
-net = tflearn.regression(net)
+net = tflearn.regression(net, optimizer='adam', loss='categorical_crossentropy')
 
 # Define model and setup tensorboard
 model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')

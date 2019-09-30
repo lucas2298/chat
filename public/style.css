@@ -58,7 +58,7 @@ label {
 #send:hover {
     background-color: #555;
 }
-.chat_bubble_selectList:hover {
+.chat_bubble_select_list:hover {
     background-color: rgb(177, 174, 174);
 }
 
@@ -83,7 +83,7 @@ label {
     border-width: 13px 18px 0 0;
     border-color: #f4f4f4 transparent transparent transparent;
 }
-.chat_bubble, .chat_bubble_user, .chat_bubble_selectList {
+.chat_bubble, .chat_bubble_user, .chat_bubble_select_list {
     position: relative;
     float: left;
     background-color: #2d67ff;
@@ -98,14 +98,14 @@ label {
 .chat_bubble {
     border-radius: 0rem 1rem 1rem 1rem;
 }
-.chat_bubble_user, .chat_bubble_selectList {
+.chat_bubble_user, .chat_bubble_select_list {
     border-radius: 1rem 0rem 1rem 1rem;
 }
-.chat_bubble_selectList {
+.chat_bubble_select_list {
     border-radius: 1rem;
 }
 
-.chat_bubble_user, .chat_bubble_selectList {
+.chat_bubble_user, .chat_bubble_select_list {
     float: right;
     margin-left: 0px;
     margin-right: 20px;
@@ -113,7 +113,7 @@ label {
     color: #555;
 }
 
-.chat_line, .chat_select_list {
+.chat_line {
     overflow: hidden;
     width: 100%;
 }

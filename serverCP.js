@@ -45,9 +45,8 @@ io.on('connection', function(socket) {
         io.to(socket.id).emit('chat', data);
         // Xoa dau
         let mess = xoa_dau(data.message).toLowerCase();
-
         // Using child_process
-        let process = spawn('py', ["-u", "./main.py", "--foo", data.message]);
+        let process = spawn('py', ["-u", "./main.py", "--foo", mess]);
         process.stdout.on('data', (data) => {
             mess = `${data}`;
             // console.log(mess)
@@ -57,7 +56,17 @@ io.on('connection', function(socket) {
             let user = false;
             let selectID = 0;
             for (let i = 1; i < messDecode.length; i++) {
-                if (messDecode[i] != "\n") messAnsw += messDecode[i];
+                if (messDecode[i] != "\n" && messDecode[i] != "+") messAnsw += messDecode[i];
+                else 
+                if (messDecode[i] == "+") {
+                    io.to(socket.id).emit('chat', {
+                        message: messAnsw,
+                        isUser: false,
+                        isSelectList: false,
+                        id: 0
+                    });
+                    break;
+                }
                 else {
                     if (!user) {
                         user = true;
