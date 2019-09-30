@@ -42,6 +42,7 @@ function chat_add_html(html) {
 socket.on('chat', function(data){
     let message = data.message,
         class_suffix = data.isUser ? '_user' : "";
+    if (message == '') return;
     if (data.isSelectList) {
         class_suffix = '_select_list';
         let html = '\
@@ -78,9 +79,11 @@ function answerSelect(btnValue) {
     });
 }
 
-
 // Jquery
 $(function(){
+    socket.emit('chat', {
+        message: ''
+    });
     $('#message').on('keypress', function (event) { 
         if (event.which == 13 && $(this).val() != "") {
             $("#chat_select").empty();

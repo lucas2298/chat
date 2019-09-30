@@ -22,7 +22,7 @@
         },
         {
             "tag": "fresher_internship",
-            "patterns": ["fresher", "internship"],
+            "patterns": ["fresher", "internship", "fresher/internship", "intern"],
             "responses": ["Chương trình fresher/internship sẽ được thông báo trên <a style='color: black;' target='_blank' href='https://facebook.com'>facebook</a> của công ty. "],
             "question": "",
             "selectList": ""
