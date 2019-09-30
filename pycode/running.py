@@ -3,7 +3,7 @@
 
 #Retore all of our data structures
 import pickle
-data = pickle.load(open("./pycode/training_data", "rb"))
+data = pickle.load(open("training_data", "rb"))
 words = data['words']
 classes = data['classes']
 train_x = data['train_x']
@@ -11,7 +11,7 @@ train_y = data['train_y']
 
 #Import our chat-bot intents file
 import json
-with open('./pycode/intents.json', encoding='utf-8') as json_data:
+with open('intents.json', encoding='utf-8') as json_data:
 	intents = json.load(json_data)
 
 #Load our saved model
@@ -31,7 +31,7 @@ net = tflearn.regression(net)
 # Define model and setup tensorboard
 model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 
-model.load('./pycode/model.tflearn')
+model.load('model.tflearn')
 
 from pycode import inputProcessing
 import random

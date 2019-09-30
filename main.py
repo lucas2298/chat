@@ -23,9 +23,9 @@ def main(argv):
     # print output
     messRes = response(argument)
     messSum = ""
-    messResEncode = ""
     for mess in messRes:
         messSum = messSum + '\n' + mess
+    messSum += '\n'
     # for mess in messRes:
     #     encodedBytes = base64.b64encode(mess.encode("utf-8"))
     #     encodedStr = str(encodedBytes, "utf-8")

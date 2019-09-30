@@ -101,6 +101,9 @@ label {
 .chat_bubble_user, .chat_bubble_selectList {
     border-radius: 1rem 0rem 1rem 1rem;
 }
+.chat_bubble_selectList {
+    border-radius: 1rem;
+}
 
 .chat_bubble_user, .chat_bubble_selectList {
     float: right;
@@ -110,7 +113,7 @@ label {
     color: #555;
 }
 
-.chat_line {
+.chat_line, .chat_select_list {
     overflow: hidden;
     width: 100%;
 }

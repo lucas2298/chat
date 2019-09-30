@@ -7,9 +7,10 @@
          "selectList": ["Thông tin công ty.", "Thông tin tuyển dụng.", "Trở thành khách hàng."],
          "context_set": ""
         },
-        {"tag": "hours",
-         "patterns": ["What hours are you open?", "What are your hours?", "When are you open?" ],
-         "responses": ["We're open every day 9am-9pm", "Our hours are 9am-9pm every day"]
+        {"tag": "company_information",
+         "patterns": ["thong tin cong ty", "thong tin", "When are you open?" ],
+         "responses": ["Aureole Information Technology Inc.(AIT)-Công ty 100% vốn đầu tư cổ phần Mitani Sangyo. Phát triển phần mềm ứng dụng trên Web.\nTrang chủ: http://www.aureole.vn/ait/vietnamese/index.html"],
+         "selectList": []
         },
         {"tag": "menu",
          "patterns": ["I want to order", "What kinds of food are there?", "What is your delicous food?" ],

@@ -4,7 +4,7 @@
 let socket = io.connect('http://localhost:4000');
 
 // Live server
-// let socket = io.connect('https://thanght.herokuapp.com');
+// let socket = io.connect('');
 
 let message = document.getElementById('message'),
     handle = document.getElementById('handle'),
@@ -44,13 +44,14 @@ socket.on('chat', function(data){
     if (data.isSelectList) {
         class_suffix = '_selectList';
         let html = '\
-            <div class="chat_line">\
+            <div class="chat_select">\
                 <div>\
-                    <button class="chat_bubble'+class_suffix+'" id='+class_suffix+data.id+'>'+message+'</button>\
+                    <button class="chat_bubble'+class_suffix+'" id="btn'+class_suffix+data.id+'" value="'+message+'" onClick="answerSelect(this.value)">'+message+'</button>\
                 </div>\
             </div>\
         ';
-        chat_add_html(html)
+        $('#chat_select').append(html);
+        chat_scrolldown();
     }
     else {
         let html = '\
@@ -64,6 +65,20 @@ socket.on('chat', function(data){
         chat_add_html(html);
     }
 });
+
+// Function select an answer
+function answerSelect(btnValue) {
+    $("#chat_select").empty();
+    let html = '\
+        <div class="chat_line">\
+        <div class="chat_bubble_user">\
+            <div class="chat_triangle_user"></div>\
+            '+btnValue+'\
+        </div>\
+    </div>\
+    ';
+    chat_add_html(html);
+}
 
 
 // Jquery
