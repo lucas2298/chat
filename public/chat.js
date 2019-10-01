@@ -1,10 +1,10 @@
 // Make connection
 
 // Localhost
-let socket = io.connect('http://localhost:4000');
+// let socket = io.connect('http://localhost:4000');
 
 // Live server
-// let socket = io.connect('');
+let socket = io.connect('http://192.168.136.117');
 
 let message = document.getElementById('message'),
     handle = document.getElementById('handle'),
