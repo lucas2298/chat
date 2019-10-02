@@ -20,7 +20,7 @@
             "responses": ["Bạn muốn tư vấn về phần nào?"],
             "selectList": ["Tuyển dụng", "Khách hàng"],
             "lock": "tuyendung",
-            "key": ["advice_yes_no"]
+            "key": ["advice_yes_no", "noSendCV"]
         },
         {
            "tag": "recruitment_information",
@@ -41,10 +41,19 @@
             "tag": "fresher_information",
             "patterns": ["thong tin"],
             "responses": ["Chương trình fresher và internship được diễn ra hằng năm. Kết quả tuyển chọn dựa trên bài test và phỏng vấn."],
-            "selectList": ["Có", "Không, cảm ơn"],
             "question": "Bạn có muốn nộp CV không?",
+            "selectList": ["Có", "Không, cảm ơn"],            
             "lock": "sendCV",
             "key": ["fresherInformation"]
+        },
+        {
+            "tag": "noSendCV",
+            "patterns": ["khong cam on"],
+            "responses": ["Bạn có cần gì nữa không?"],
+            "selectList": ["Có", "Không, cảm ơn"],
+            "privateOnly": "yes",
+            "lock": "noSendCV",
+            "key": ["sendCV"]
         },
         {
             "tag": "sendCV",
@@ -66,9 +75,9 @@
             "tag": "end_conversation",
             "patterns": ["ket thuc", "tam biet", "khong", "khong cam on", "im di", "khong can", "im lang"],
             "responses": ["Good bye.", "Hẹn gặp lại.", "Cần giúp đỡ hãy gọi mình."],
-            "selectList": "",
+            "selectList": ["Có.", "Không, cảm ơn."],
             "lock": "close",
-            "key": ["advice_yes_no"]
+            "key": ["advice_yes_no", "noSendCV"]
         }
    ]
 }
