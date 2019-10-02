@@ -1,2 +1,2 @@
-model_checkpoint_path: "C:\\Users\\thanght\\Desktop\\Work\\chat\\pycode\\model.tflearn"
-all_model_checkpoint_paths: "C:\\Users\\thanght\\Desktop\\Work\\chat\\pycode\\model.tflearn"
+model_checkpoint_path: "D:\\chat\\pycode\\model.tflearn"
+all_model_checkpoint_paths: "D:\\chat\\pycode\\model.tflearn"

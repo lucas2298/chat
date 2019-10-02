@@ -47,25 +47,48 @@ def classify(sentence):
     return_list = []
     for r in results:
         return_list.append((classes[r[0]], r[1]))
-        break
     # return tuple of intent and probability
     return return_list
 
-def response(sentence, userID='123', show_details=False):
+lock = {}
+
+def response(sentence, userID, show_details=False):
     results = classify(sentence)
+    if not userID in lock:
+        lock[userID] = 'close'
+    print(userID)
     # if we have a classification then find the matching intent tag
     if results:
+        print(results)
         # loop as long as there are matches to process
-        while results:
+        for lenRes in range(0, len(results)):
             for i in intents['intents']:
                 # find a tag matching the first result
-                if i['tag'] == results[0][0]:
-                    data = []
-                    data.append(random.choice(i['responses']))
-                    for s in i['selectList']:
-                        data.append(s)
-                    if i['question'] != '':
-                        data.append(i['question']+'+')
-                    return data
-                    # a random response from the intent
-                    # return random.choice(i['responses'])
+                if i['tag'] == results[lenRes][0]:
+                    print(lock[userID])
+                    # Kiem tra tinh trang lock
+                    if lock[userID] == 'close':
+                        if not 'privateOnly' in i:
+                            # Kiem tra lock
+                            if 'lock' in i:
+                                lock[userID] = i['lock']
+                            # Tra ket qua
+                            data = []
+                            data.append(random.choice(i['responses']))
+                            for s in i['selectList']:
+                                data.append(s)
+                            if 'question' in i:
+                                data.append(i['question']+'+')
+                            return data
+                    else:
+                        if 'key' in i and lock[userID] in i['key']:
+                            data = []
+                            data.append(random.choice(i['responses']))
+                            for s in i['selectList']:
+                                data.append(s)
+                            if 'question' in i:
+                                data.append(i['question']+'+')
+                            print(lock[userID])
+                            lock[userID] = i['lock']                            
+                            return data
+        return None

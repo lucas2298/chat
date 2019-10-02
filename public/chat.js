@@ -1,10 +1,10 @@
 // Make connection
 
 // Localhost
-// let socket = io.connect('http://localhost:4000');
+let socket = io.connect('http://localhost:4000');
 
 // Live server
-let socket = io.connect('http://192.168.136.117');
+// let socket = io.connect('http://192.168.136.117');
 
 let message = document.getElementById('message'),
     handle = document.getElementById('handle'),
@@ -30,7 +30,7 @@ btn.addEventListener('click', function(){
 // Function
 
 function chat_scrolldown() {
-    $('#chat_log').animate({ scrollTop: $('#chat_log')[0].scrollHeight }, 500);
+    $('#chat_log').animate({ scrollTop: $('#chat_log')[0].scrollHeight }, 200);
 }
 
 function chat_add_html(html) {
@@ -82,7 +82,7 @@ function answerSelect(btnValue) {
 // Jquery
 $(function(){
     socket.emit('chat', {
-        message: ''
+        message: 'Xin chào!'
     });
     $('#message').on('keypress', function (event) { 
         if (event.which == 13 && $(this).val() != "") {

@@ -1,38 +1,74 @@
 {"intents": [
-        {"tag": "greeting",
-         "patterns": ["hi", "hello", "chao", "chao ban", "bot", "can giup do", "khong, cam on"],
-         "responses": [
-            "Mình có thể giúp gì cho bạn?"
-         ],
-         "question": "",
-         "selectList": ["Thông tin công ty.", "Thông tin tuyển dụng.", "Trở thành khách hàng."]
+        {
+            "tag": "greeting",
+            "patterns": ["hi", "hello", "chao", "chao ban", "bot", "can giup do", "xin chao", "ho tro"],
+            "responses": ["Mình có thể giúp gì cho bạn?"],            
+            "selectList": ["Thông tin công ty.", "Tư vấn."],
+            "lock": "close"
+        }, 
+        {
+            "tag": "company_information",
+            "patterns": ["thong tin cong ty", "thong tin", "thong tin co ban", "cong ty", "co ban"],
+            "responses": ["Aureole Information Technology Inc.(AIT)-Công ty 100% vốn đầu tư cổ phần Mitani Sangyo. Phát triển phần mềm ứng dụng trên Web. <a style='color: black;' target='_blank' href='http://www.aureole.vn/ait/vietnamese/index.html'>Chi tiết xem thêm tại đây.</a>"],
+            "question": "Bạn muốn được tư vấn tiếp không?",
+            "selectList": ["Có", "Không, cảm ơn."],
+            "lock": "advice_yes_no"
         },
-        {"tag": "company_information",
-         "patterns": ["thong tin cong ty", "thong tin", "thong tin co ban", "cong ty", "co ban"],
-         "responses": ["Aureole Information Technology Inc.(AIT)-Công ty 100% vốn đầu tư cổ phần Mitani Sangyo. Phát triển phần mềm ứng dụng trên Web. <a style='color: black;' target='_blank' href='http://www.aureole.vn/ait/vietnamese/index.html'>Chi tiết xem thêm tại đây.</a>"],
-         "question": "Công ty có tuyển dụng các vị trí sau, bạn muốn ứng tuyển vào vị trí nào không?",
-         "selectList": ["Fresher/Internship.", "Nhân viên chính thức.", "Nhân viên partime", "Không, cảm ơn."]
+        {
+            "tag": "advice",
+            "patterns": ["tu van", "co"],
+            "responses": ["Bạn muốn tư vấn về phần nào?"],
+            "selectList": ["Tuyển dụng", "Khách hàng"],
+            "lock": "tuyendung",
+            "key": ["advice_yes_no"]
         },
         {
            "tag": "recruitment_information",
            "patterns": ["ung tuyen", "thong tin tuyen dung", "tuyen dung", "tro thanh nhan vien", "tro thanh"],
-           "responses": ["Công ty hiện tại có tuyển dụng các vị trí sau"],
-           "question": "",
-           "selectList": ["Fresher/Internship.", "Nhân viên chính thức.", "Nhân viên partime"]
+           "responses": ["Các vị trí công ty có tuyển dụng"],
+           "selectList": ["Fresher/Internship.", "Nhân viên chính thức."],
+           "lock": "close",
+           "key": ["tuyendung"]
         },
         {
             "tag": "fresher_internship",
             "patterns": ["fresher", "internship", "fresher/internship", "intern"],
-            "responses": ["Chương trình fresher/internship sẽ được thông báo trên <a style='color: black;' target='_blank' href='https://facebook.com'>facebook</a> của công ty. "],
-            "question": "",
-            "selectList": ""
+            "responses": ["Bạn muốn biết gì về chương trình này?"],
+            "selectList": ["Thông tin", "Nộp CV như thế nào?"],
+            "lock": "fresherInformation"
         },
         {
-         "tag": "employees",
-         "patterns": ["nhan vien chinh thuc", "nhan vien tam thoi", "nhan vien partime"],
-         "responses": ["Bạn hãy gửi CV về email: tuyendung@aureole-it.vn"],
-         "question": "",
-         "selectList": ""
+            "tag": "fresher_information",
+            "patterns": ["thong tin"],
+            "responses": ["Chương trình fresher và internship được diễn ra hằng năm. Kết quả tuyển chọn dựa trên bài test và phỏng vấn."],
+            "selectList": ["Có", "Không, cảm ơn"],
+            "question": "Bạn có muốn nộp CV không?",
+            "lock": "sendCV",
+            "key": ["fresherInformation"]
+        },
+        {
+            "tag": "sendCV",
+            "patterns": ["co", "nop cv nhu the nao"],
+            "responses": ["Bạn hãy gửi CV về email: tuyendung@aureole-it.vn"],
+            "selectList": [],
+            "privateOnly": "yes",
+            "lock": "close",
+            "key": ["sendCV", "fresherInformation"]
+        },
+        {
+            "tag": "employees",
+            "patterns": ["nhan vien chinh thuc", "chinh thuc"],
+            "responses": ["Bạn hãy gửi CV về email: tuyendung@aureole-it.vn"],
+            "selectList": "",
+            "lock": "close"
+        },
+        {
+            "tag": "end_conversation",
+            "patterns": ["ket thuc", "tam biet", "khong", "khong cam on", "im di", "khong can", "im lang"],
+            "responses": ["Good bye.", "Hẹn gặp lại.", "Cần giúp đỡ hãy gọi mình."],
+            "selectList": "",
+            "lock": "close",
+            "key": ["advice_yes_no"]
         }
    ]
 }
