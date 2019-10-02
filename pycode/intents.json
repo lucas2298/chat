@@ -51,18 +51,18 @@
             "patterns": ["khong cam on"],
             "responses": ["Bạn có cần gì nữa không?"],
             "selectList": ["Có", "Không, cảm ơn"],
-            "privateOnly": "yes",
             "lock": "noSendCV",
-            "key": ["sendCV"]
+            "key": ["sendCV"],
+            "privateOnly": "yes"
         },
         {
             "tag": "sendCV",
             "patterns": ["co", "nop cv nhu the nao"],
             "responses": ["Bạn hãy gửi CV về email: tuyendung@aureole-it.vn"],
             "selectList": [],
-            "privateOnly": "yes",
             "lock": "close",
-            "key": ["sendCV", "fresherInformation"]
+            "key": ["sendCV", "fresherInformation"],
+            "privateOnly": "yes"
         },
         {
             "tag": "employees",
