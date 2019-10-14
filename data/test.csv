@@ -1,11 +1,3 @@
 ﻿tag,patterns,responses,question,selectList,lock,key,privateOnly
 greeting,"['hi', 'hello', 'chao', 'chao ban', 'bot', 'can giup do', 'xin chao', 'ho tro']",['Mình có thể giúp gì cho bạn?'],,"['Thông tin công ty.', 'Tư vấn.']",close,['close'],no
 companyInformation,"['thong tin cong ty', 'thong tin', 'thong tin co ban', 'cong ty', 'co ban']","[""Aureole Information Technology Inc.(AIT)-Công ty 100% vốn đầu tư cổ phần Mitani Sangyo. Phát triển phần mềm ứng dụng trên Web. <a style='color: black;' target='_blank' href='http://www.aureole.vn/ait/vietnamese/index.html'>Chi tiết xem thêm tại đây.</a>""]",Bạn muốn được tư vấn tiếp không?,"['Có', 'Không, cảm ơn.']",advice_yes_no,['close'],no
-advice,"['tu van', 'co']",['Bạn muốn tư vấn về phần nào?'],,"['Tuyển dụng', 'Khách hàng']",tuyendung,"['advice_yes_no', 'noSendCV']",no
-recruitmentInformation,"['ung tuyen', 'thong tin tuyen dung', 'tuyen dung', 'tro thanh nhan vien', 'tro thanh']",['Các vị trí công ty có tuyển dụng'],,"['Fresher/Internship.', 'Nhân viên chính thức.']",close,['tuyendung'],no
-fresherInternship,"['fresher', 'internship', 'fresher/internship', 'intern']",['Bạn muốn biết gì về chương trình này?'],,"['Thông tin', 'Nộp CV như thế nào?']",fresherInformation,['close'],no
-fresherInformation,['thong tin'],['Chương trình fresher và internship được diễn ra hằng năm. Kết quả tuyển chọn dựa trên bài test và phỏng vấn.'],Bạn có muốn nộp CV không?,"['Có', 'Không, cảm ơn']",sendCV,['fresherInformation'],yes
-noSendCV,['khong cam on'],['Bạn có cần gì nữa không?'],,"['Có', 'Không, cảm ơn']",noSendCV,['sendCV'],yes
-sendCV,"['co', 'nop cv nhu the nao']",['Bạn hãy gửi CV về email: tuyendung@aureole-it.vn'],,[],close,"['sendCV', 'fresherInformation']",yes
-employees,"['nhan vien chinh thuc', 'chinh thuc']",['Bạn hãy gửi CV về email: tuyendung@aureole-it.vn'],,[],close,['close'],no
-endConversation,"['ket thuc', 'tam biet', 'khong', 'khong cam on', 'im di', 'khong can', 'im lang']","['Good bye.', 'Hẹn gặp lại.', 'Cần giúp đỡ hãy gọi mình.']",,"['Có.', 'Không, cảm ơn.']",close,"['advice_yes_no', 'noSendCV']",no
