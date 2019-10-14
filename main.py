@@ -21,7 +21,7 @@ def main(argv):
         elif opt in ("-f", "--foo"):
             argument = arg
     # print output
-    messRes = response(argument)
+    messRes = response(argument, "123")
     messSum = ""
     for mess in messRes:
         messSum = messSum + '\n' + mess
