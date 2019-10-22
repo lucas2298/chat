@@ -81,6 +81,8 @@ model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 model.fit(train_x, train_y, n_epoch=1000, batch_size=8, show_metric=True)
 model.save('model.tflearn')
 
+# Lam slide di
+
 # save all of our data structures
 import pickle
 pickle.dump( {'words':words, 'classes':classes, 'train_x':train_x, 'train_y':train_y}, open( "training_data", "wb" ) )
