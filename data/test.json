@@ -1,1 +1,1 @@
-﻿{"intents": []}
+﻿{"intents": [{"tag": "greeting", "patterns": "['hi', 'hello', 'chao', 'chao ban', 'bot', 'can giup do', 'xin chao', 'ho tro']"}, {"tag": "companyInformation", "patterns": "['thong tin cong ty', 'thong tin', 'thong tin co ban', 'cong ty', 'co ban']"}]}

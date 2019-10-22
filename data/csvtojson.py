@@ -17,12 +17,17 @@ with open(csvFilePath, "r", encoding='utf-8-sig') as csvFile:
     for rows in csvReader:
         print(rows['tag'])
         s = ""
-        for i in rows:
+        # for i in rows:
             # data['intents'].append({
             #     i: rows[i],
             # })
-            s += i + ': ' + rows[i] + ',' + '\n'
-        print(s,'\n')
+            # s += i + ': ' + rows[i] + ','
+        data['intents'].append({
+            'tag': rows['tag'],
+            'patterns': rows['patterns'],
+        })
+        # data['intents'].append(s)
+        # print(s,'\n')
 
     with open(jsonFilePath, 'w', encoding='utf-8-sig') as json_data:
         json.dump(data, json_data)
