@@ -58,14 +58,14 @@ def response(sentence, userID, show_details=False):
         lock[userID] = 'close'
     # if we have a classification then find the matching intent tag
     if results:
-        print(results)
+        # print(results)
         # loop as long as there are matches to process
         for lenRes in range(0, len(results)):
             for i in intents['intents']:
                 # find a tag matching the first result
-                print(lock[userID])
-                print(i['key'])
-                print("\n")
+                # print(lock[userID])
+                # print(i['key'])
+                # print("\n")
                 if i['tag'] == results[lenRes][0]:
                     # Kiem tra tinh trang lock
                     if lock[userID] == 'close':

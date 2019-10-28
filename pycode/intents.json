@@ -93,7 +93,7 @@
         "tag": "endConversation",
         "patterns": ["ket thuc", "tam biet", "khong", "khong cam on", "im di", "khong can", "im lang"],
         "responses": ["Good bye.", "Hẹn gặp lại.", "Cần giúp đỡ hãy gọi mình."],
-        "question": "",
+        "question": "Bạn muốn tư vấn tiếp không?",
         "selectList": ["Có.", "Không, cảm ơn."],
         "lock": "close",
         "key": ["advice_yes_no", "noSendCV"],

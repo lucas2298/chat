@@ -2,7 +2,6 @@ let express = require('express');
 let socket = require('socket.io');
 let bodyParser = require('body-parser');
 let request = require('request-promise');
-let spawn = require('child_process').spawn;
 
 // App setup
 let app = express();
